@@ -12,6 +12,14 @@ class RatingSerializer(serializers.ModelSerializer):
         model = Rating
         fields = ['value']
 
+        def create(self, validated_data):
+            rating, _ = Rating.objects.update_or_create(
+                ip=validated_data.get('ip', None),
+                movie=validated_data.get('movie', None),
+                defaults={'star': validated_data.get("star")}
+            )
+            return rating
+
 
 class CreateCommentSerializer(serializers.ModelSerializer):
     """Создание сериализации коментариев"""
@@ -30,7 +38,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class PhotoBook(serializers.ModelSerializer):
-    """Фотогрфия книги"""
+    """Фото книги"""
     class Meta:
         model = Image_book
         fields = '__all__'

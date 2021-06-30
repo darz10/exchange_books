@@ -3,7 +3,7 @@ from .views import CreateCommenntView, ProfileView, DetailBookView, TestView, in
 
 urlpatterns = [
     # path('', include('exchange.urls')), //TODO главной страницей будет список посделних добавленных книг каждого пользователя с сортировкой по рейтингу
-    path('profile/', ProfileView.as_view(), name='profile'),
+    path('books/', ProfileView.as_view(), name='profile'),
     path('book/<int:pk>/', DetailBookView.as_view(), name='detail_book'),
     path('create_comment/', CreateCommenntView.as_view(), name='create_comment'),
     path('', TestView.as_view()),
