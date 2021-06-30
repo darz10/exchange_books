@@ -41,7 +41,7 @@ class PhotoBook(serializers.ModelSerializer):
     """Фото книги"""
     class Meta:
         model = Image_book
-        fields = '__all__'
+        fields = ['image_book']
 
 
 class BookSerializer(serializers.ModelSerializer):

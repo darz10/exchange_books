@@ -1,4 +1,7 @@
 <template>
+    <div class="singleBook">
+        <h1>SIIngel hello</h1>
+    </div>
 </template>
 <script>
     export default {
