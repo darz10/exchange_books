@@ -1,11 +1,12 @@
+from django.db import models
 from rest_framework import permissions
 from django.contrib.auth.models import User
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.views import APIView, Response
-from exchange.serializers import BookSerializer, CreateCommentSerializer, UserSerializer
+from books.serializers import BookSerializer, CreateCommentSerializer, UserSerializer
 from .models import Book, Comment
 from django.db.models import Q
-from django.shortcuts import render
+
 
 
 class ProfileView(ListCreateAPIView):
@@ -15,6 +16,7 @@ class ProfileView(ListCreateAPIView):
 
     def get_queryset(self):
         qs = Book.objects.all()
+        
         query = self.request.GET.get("q")
         if query is not None:
             qs = qs.filter(
@@ -22,6 +24,14 @@ class ProfileView(ListCreateAPIView):
                     Q(content__icontains=query)
                     ).distinct()
         return qs
+
+    def get(self, request):
+        """Вывод 15 последних добавленных книг"""
+
+        books = self.get_queryset().order_by('-created_at')[:15]
+        serializer = BookSerializer(books, many=True)
+        print(serializer.data)
+        return Response(serializer.data)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -38,14 +48,3 @@ class CreateCommenntView(ListCreateAPIView):
 
     queryset = Comment.objects.all()
     serializer_class = CreateCommentSerializer
-
-
-class TestView(APIView):
-
-    def get(self, request, *args, **kwargs):
-        data = [{"color": "black", "name": "white"}, {"color":"yellow", "name": "Jack"}]
-        return Response(data)
-
-
-def index(request):
-    return render(request, 'index.html',{})

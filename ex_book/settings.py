@@ -27,14 +27,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'exchange',
+    'books',
     'login',
     'djoser',
     'corsheaders',  
 
     'rest_framework',
     'rest_framework.authtoken',
-    # 'channels',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +69,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ex_book.wsgi.application'
-# ASGI_APPLICATION = "ex_book.asgi.application"
+ASGI_APPLICATION = "ex_book.asgi.application"
 
 
 # Database
@@ -116,7 +116,7 @@ AUTH_USER_MODEL = 'login.Profile'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Yekaterinburg'
 
 USE_I18N = True
 

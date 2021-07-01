@@ -1,5 +1,6 @@
 from django.db import models
 from login.models import Profile
+from django.utils import timezone
 
 
 STATE = (
@@ -20,7 +21,7 @@ class Book(models.Model):
     name_book = models.CharField(verbose_name='Название книги', 
                                 max_length=70)
     author = models.ForeignKey('Author', on_delete=models.CASCADE)
-    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True, verbose_name="Категория")
     genre = models.ForeignKey('Genre', on_delete=models.CASCADE, verbose_name='Жанр')
     country = models.CharField(verbose_name='Страна', max_length=50)
     book_describe = models.TextField(verbose_name='Описание книги', max_length=300)
@@ -28,8 +29,11 @@ class Book(models.Model):
                                 max_length=50,choices=STATE, 
                                 default='хорошее')
     exchange_status = models.BooleanField(verbose_name='Статус готовности обмена книги', default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)
    
+    class Meta:
+        ordering = ["-created_at"]
+
     def __str__(self):
         return f"{self.name_book} - {self.author}"
 
@@ -52,7 +56,7 @@ class Author(models.Model):
 
     name_author = models.CharField(verbose_name='Имя автора', max_length=70)
     describe_author = models.TextField(verbose_name='Описание автора',max_length=300)
-    photo_author = models.ImageField(upload_to='photo_author', verbose_name='Фото автора')
+    photo_author = models.ImageField(upload_to='photo_author', verbose_name='Фото автора', null=True, blank=True)
     
     def __str__(self):
         return self.name_author
@@ -63,6 +67,9 @@ class Category(models.Model):
 
     category = models.CharField(verbose_name="Категория", max_length=150)
     
+    def __str__(self):
+        return self.category
+
 
 class Genre(models.Model):
     """Жанры"""

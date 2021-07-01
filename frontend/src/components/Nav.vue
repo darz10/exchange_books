@@ -1,14 +1,18 @@
 <template>
      <div class="nav">
-        <div class="position-relative top-100 start-50 translate-middle mt-1 bi bi-caret-down-fill">
+       <div class="align-self-center" style="margin:15px;">
           <h1 align="center">Exchange books</h1>
-        </div>
+       </div>
         <div class="search">
           <form>
-            <div class="search-area">
-              <input class="form-control" type="text" placeholder="Search">
+            <div class="d-flex flex-row-reverse bd-highlight">
+              <div class="p-2 bd-highlight" style="margin-left:-10px;">
+                <button class="btn btn-success">Search</button>
+              </div>
+              <div class="p-2 bd-highlight">
+                <input class="form-control" type="text" placeholder="Search">
+              </div>
             </div>
-            <button class="btn btn-success">Search</button>
           </form>
         </div>
       </div>
@@ -29,5 +33,6 @@
         }
         .position-relative{
           margin-bottom: -60px;
+          margin-left: 50px;
         }
 </style>

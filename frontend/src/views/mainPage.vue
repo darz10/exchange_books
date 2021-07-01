@@ -1,18 +1,33 @@
 <template>
     <div class="mainPage">
-        <h1>Main page render</h1>
-        <div v-for="book in listBooks" :key="book.id">
-            <div class="card border-warning mb-3 " style="max-width: 540px;">
-                <div class="card-header"><h3>Владелец книги: {{book.user}}</h3></div>
-                <div class="row g-0">
-                        
-                        <h3>Название книги: {{book.name_book}}</h3>
-                        <h3>{{book.exchange_status}}</h3>
-                        <h3>{{book.rate_book}}</h3>
+        <!-- <div class="d-flex justify-content-between"> -->
+        <form>
+            <input type="text">
+            <button type="submit">Click</button>
+        </form>
+        <div class="row">
+            <div v-for="book in listBooks" :key="book.id">
+                <div class="col">
+                    <div class="card border-warning mb-3" style="width: 530px; height: 250px;">
+                        <div class="row g-0">
+                            <div class="col-md-4" style="border-radius: 20px;">
+                              <img src="#" class="img-fluid rounded-start" alt="#">
+                            </div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <h5>Владелец книги: {{book.user}} </h5><hr>
+                                <h5>Название книги: {{book.name_book}}</h5>
+                                <h5>Готовность к обмену: {{book.exchange_status}}</h5>
+                                <h5>Автор: {{book.author}}</h5><hr>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                              </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 <script>
