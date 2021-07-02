@@ -1,20 +1,33 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/mainPage.vue'
-import Single from "../views/SingleBook";
+import mainPage from '../views/mainPage.vue'
+import SingleBook from "../views/SingleBook";
+import Exchange_chat from "../views/Exchange_chat.vue"
+import Login from "../components/Login.vue"
 
 Vue.use(VueRouter)
 
 const routes = [
     {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    },
+    {
         path: '/',
         name: 'mainPage',
-        component: Home
+        component: mainPage
     },
     {
         path: '/:id',
         name: 'SingleBook',
-        component: Single,
+        component: SingleBook,
+        props: true
+    },
+    {
+        path: '/exchnge_chat',
+        name: 'exchange_chat',
+        component: Exchange_chat,
         props: true
     },
 ]

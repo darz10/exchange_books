@@ -9,9 +9,14 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "jQuery": "^1.7.4",
+    "jsdom": "^16.6.0",
+    "location": "0.0.1",
+    "navigator": "^1.0.1",
     "vue": "^2.6.11",
     "vue-router": "^3.5.2",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

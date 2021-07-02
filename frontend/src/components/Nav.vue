@@ -1,19 +1,13 @@
 <template>
-     <div class="nav">
-       <div class="align-self-center" style="margin:15px;">
-          <h1 align="center">Exchange books</h1>
-       </div>
-        <div class="search">
-          <form>
-            <div class="d-flex flex-row-reverse bd-highlight">
-              <div class="p-2 bd-highlight" style="margin-left:-10px;">
-                <button class="btn btn-success">Search</button>
-              </div>
-              <div class="p-2 bd-highlight">
-                <input class="form-control" type="text" placeholder="Search">
-              </div>
-            </div>
+        <div class="navbar navbar-fixed-top">
+        <div class="container">
+          <h1 class="navbar-brand" style="font-size: 33px;">ExBook</h1>
+          <div class="navbar-header">
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
+          </div>
         </div>
       </div>
 </template>
@@ -25,14 +19,10 @@
 </script>
 
 <style scoped>
-    .nav{
+    .navbar{
           margin: 0;
           width: 100%;
-          height: 150px;
+          height: 115px;
           background: hsl(59, 97%, 57%);
-        }
-        .position-relative{
-          margin-bottom: -60px;
-          margin-left: 50px;
-        }
+    }
 </style>

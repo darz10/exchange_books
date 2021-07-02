@@ -30,7 +30,6 @@ class ProfileView(ListCreateAPIView):
 
         books = self.get_queryset().order_by('-created_at')[:15]
         serializer = BookSerializer(books, many=True)
-        print(serializer.data)
         return Response(serializer.data)
 
     def perform_create(self, serializer):

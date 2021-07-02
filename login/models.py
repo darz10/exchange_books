@@ -10,6 +10,7 @@ GENDER = (
 
 class Profile(AbstractUser):
     """Кастомная модель пользователя"""
+    
     gender = models.CharField(verbose_name='Пол', max_length=50,choices=GENDER, default='Мужской')
     avatar = models.ImageField(upload_to='avatar', blank=True, null=True, verbose_name="Фото пользователя")
     age = models.PositiveIntegerField(verbose_name="Возраст", default=0) # check adult or not for filter content

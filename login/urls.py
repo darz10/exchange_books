@@ -1,5 +1,7 @@
 from django.urls import path, include
+from .views import UsersList
+
 
 urlpatterns = [
-    # path('login/', include('exchange.urls')),
+    path('', UsersList.as_view(), name="users_list"),
 ]
