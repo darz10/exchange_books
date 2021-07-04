@@ -19,13 +19,13 @@ const routes = [
         component: mainPage
     },
     {
-        path: '/:id',
+        path: '/book/:id',
         name: 'SingleBook',
         component: SingleBook,
         props: true
     },
     {
-        path: '/exchnge_chat',
+        path: '/exchange_chat',
         name: 'exchange_chat',
         component: Exchange_chat,
         props: true

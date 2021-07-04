@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'books',
     'login',
+    'exchange_chat',
+
     'djoser',
     'corsheaders',  
 

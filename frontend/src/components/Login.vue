@@ -7,21 +7,21 @@
                   <input v-model="username" type="text" class="form-control" id="username" placeholder="Имя пользователя" required>
                   <input v-model="password" type="password" class="form-control" id="password" placeholder="Пароль" required>
               </div>
-              <button @click="setLogin" type="submit" class="btn btn-block btn-primary">Sign up</button>
+              <button @click="setLogin" type="submit" class="btn btn-block btn-primary">Sign in</button>
           </div>          
         </div>
       </div>
 </template>
 
 <script>
-    import $ from 'jQuery';
+    import $ from 'jquery'
 
     export default {
         name: "Login",
         data() {
             return {
-                login: '',
-                password: '',
+                username: '',
+                password: '',   
             }
         },
         methods: {
@@ -34,9 +34,10 @@
                         password: this.password
                     },
                     success: (response) => {
+                        console.log(response.auth_token)
                         alert("Добро пожаловать в ExBook")
-                        sessionStorage.setItem("auth_token", response.data.attributes.auth_token)
-                        this.$router.push({name: "mainPage"})
+                        sessionStorage.setItem("auth_token", response.auth_token)
+                        this.$router.push({ name: 'mainPage'})
                     },
                     error: (response) => {
                         if (response.status === 400) {
