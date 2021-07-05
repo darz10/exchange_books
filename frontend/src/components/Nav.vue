@@ -3,10 +3,11 @@
         <div class="container">
           <h1 class="navbar-brand" style="font-size: 33px;">ExBook</h1>
           <div class="navbar-header">
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+              <a><h4 style="margin: 7px;">Profile</h4></a>
+            </form>
           </div>
         </div>
       </div>

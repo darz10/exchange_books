@@ -6,7 +6,9 @@
                     <div class="card border-warning mb-3" style="width: 530px; height: 250px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="assets/images/index.jpeg" class="img-fluid rounded-start" alt="#">
+                                <div class="position-relative top-50 start-50 translate-middle">
+                                    <img src="../assets/images/index.jpeg" class="img-fluid rounded-start" alt="#" style="with: 150px; height: 230px; margin    : 10px;">
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -17,7 +19,7 @@
                                     <hr>
                                     <div class='d-flex'>
                                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                        <button @onclick="Chat" class="btn btn-outline-warning" style="height: 40px;"><p>Хочу прочитать!</p></button>
+                                        <a href="#" @onclick="goTo(book.id)"><button class="btn btn-outline-warning" style="height: 40px;"><p>Хочу прочитать!</p></button></a>
                                     </div>                                      
                                     </div>
                             </div>
@@ -44,10 +46,8 @@
                 this.listBooks = await fetch(`${this.$store.getters.getUrl}books/`).then(response => response.json())
             },
             goTo(id) {
+                console.log('gooottttoo')
                 this.$router.push({ name: 'SingleBook', params: {id: id} })
-            },
-            Chat(){ 
-                this.$router.push({name: 'exchange_chat'})
             },
         components: {},
         }

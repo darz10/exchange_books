@@ -25,7 +25,7 @@ const routes = [
         props: true
     },
     {
-        path: '/exchange_chat',
+        path: '/exchange_chat/:id',
         name: 'exchange_chat',
         component: Exchange_chat,
         props: true
