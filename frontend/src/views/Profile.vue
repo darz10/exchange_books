@@ -1,26 +1,26 @@
 <template>
     <div class="singleBook">
-        <h1>SIIngel hello</h1>
+        <h1>Profile</h1>
         <div>
-            <p>Here will attrs</p>
+            <p>{{userData.username}}</p>
         </div>
     </div>
 </template>
 <script>
     export default {
-        name: "SingleBook",
+        name: "Profile",
         props: ['id'],
         data() {
             return {
-                book: {}
+                userData: {}
             }
         },
         created() {
-            this.loadMovie()
+            this.loaduserData()
         },
         methods: {
-            async getBook() {
-                this.book = await fetch(`${this.$store.getters.getUrl}/api/book/${this.id}`).then(response => response.json())
+            async loaduserData() {
+                this.userData = await fetch(`${this.$store.getters.getUrl}/profile/user/${this.id}`).then(response => response.json())
             }
         }
     }   

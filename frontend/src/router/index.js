@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import mainPage from '../views/mainPage.vue'
 import SingleBook from "../views/SingleBook";
 import Exchange_chat from "../views/Exchange_chat.vue"
-import Login from "../components/Login.vue"
+import Login from "../views/Login.vue"
+import Profile from "../views/Profile.vue"
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,12 @@ const routes = [
         path: '/exchange_chat/:id',
         name: 'exchange_chat',
         component: Exchange_chat,
+        props: true
+    },
+    {
+        path: '/profile/:id',
+        name: 'Profile',
+        component: Profile,
         props: true
     },
 ]

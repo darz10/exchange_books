@@ -1,7 +1,8 @@
-from django.urls import path, include
-from .views import UsersList
+from django.urls import path
+from .views import UsersList, ProfileUser
 
 
 urlpatterns = [
-    path('', UsersList.as_view(), name="users_list"),
+    path('all/', UsersList.as_view(), name="users_list"),
+    path('', ProfileUser.as_view(), name="user_profile"),
 ]

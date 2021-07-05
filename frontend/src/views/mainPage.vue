@@ -19,7 +19,7 @@
                                     <hr>
                                     <div class='d-flex'>
                                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                        <a href="#" @onclick="goTo(book.id)"><button class="btn btn-outline-warning" style="height: 40px;"><p>Хочу прочитать!</p></button></a>
+                                        <button class="btn btn-outline-warning" style="height: 40px;"><p>Хочу прочитать!</p></button>
                                     </div>                                      
                                     </div>
                             </div>
@@ -43,12 +43,13 @@
         },
         methods: {
              async gettingBooks(){
-                this.listBooks = await fetch(`${this.$store.getters.getUrl}books/`).then(response => response.json())
+                this.listBooks = await fetch(`${this.$store.getters.getUrl}/api/books/`).then(response => response.json())
             },
             goTo(id) {
                 console.log('gooottttoo')
                 this.$router.push({ name: 'SingleBook', params: {id: id} })
             },
+
         components: {},
         }
     }
