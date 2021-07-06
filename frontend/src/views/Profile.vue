@@ -9,10 +9,9 @@
 <script>
     export default {
         name: "Profile",
-        props: ['id'],
         data() {
             return {
-                userData: {}
+                userData: []
             }
         },
         created() {
@@ -20,7 +19,8 @@
         },
         methods: {
             async loaduserData() {
-                this.userData = await fetch(`${this.$store.getters.getUrl}/profile/user/${this.id}`).then(response => response.json())
+                this.userData = await fetch(`${this.$store.getters.getUrl}/profile/`).then(response => response.json())
+                console.log(this.userData)
             }
         }
     }   

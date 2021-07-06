@@ -1,16 +1,8 @@
 <template>
         <div class="navbar navbar-fixed-top">
         <div class="container">
-         <h1 class="navbar-brand" style="font-size: 33px;"> <a href="/">ExBook</a></h1>
-          <div class="navbar-header">
-            <form class="d-flex">
-              <!-- <button v-if="!auth" @click="goLogin">Вход</button>
-              <button v-else @click="logout">Выход</button> -->
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-              <a><h4 style="margin: 7px;">Profile</h4></a>
-            </form>
-          </div>
+          <h1 class="navbar-brand" style="font-size: 40px;"><b> ExBook</b></h1>
+          <a><h4 style="margin: 7px;">Profile</h4></a>
         </div>
       </div>
 </template>
@@ -18,32 +10,43 @@
 <script>
     export default {
         name: "Nav",
-        
-        computed: {
-            
-        },
-        methods: {
-            auth() {
-                if (sessionStorage.getItem("auth_token")) {
-                    return true
-                }
-            },
-            goLogin() {
-                this.$router.push({name: "login"})
-            },
-            logout() {
-                sessionStorage.removeItem("auth_token")
-                window.location = '/'
-            },
-        }
+        // data(){
+        //   return{
+        //     status: false,
+        //   }
+        // },
+        // computed: {
+        //     auth() {
+        //         if (sessionStorage.getItem("auth_token")) {
+        //             return true
+        //         }
+        //     }
+        // },
+        // methods: {
+        //     goLogin() {
+        //         this.$router.push({name: "login"})
+        //     },
+        //     logout() {
+        //         sessionStorage.removeItem("auth_token")
+        //         this.$router.push({name: "login"})
+        //     },
+        // }
     }
 </script>
 
 <style scoped>
+    @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
     .navbar{
           margin: 0;
           width: 100%;
           height: 115px;
-          background: hsl(59, 97%, 57%);
+          background: #ffffff;
+          background: radial-gradient(circle, rgba(251,251,251,1) 0%, rgba(255,237,4,1) 18%, rgba(255,186,0,1) 100%); 
+    }
+    h1, h2, h3, h4, h5, h6{
+      font-family: 'Questrial', sans-serif;
+    }
+    a{
+      font-family: 'Questrial', sans-serif;
     }
 </style>
