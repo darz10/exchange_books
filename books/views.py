@@ -1,29 +1,18 @@
-from django.db import models
+from rest_framework import filters
 from rest_framework import permissions
-from django.contrib.auth.models import User
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.views import APIView, Response
-from books.serializers import BookSerializer, CreateCommentSerializer, UserSerializer
+from books.serializers import BookSerializer, CreateCommentSerializer
 from .models import Book, Comment
-from django.db.models import Q
-
 
 
 class ProfileView(ListCreateAPIView):
-    
+    """Вывод списка книг"""    
+    queryset = Book.objects.all()
     serializer_class = BookSerializer
-    #permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        qs = Book.objects.all()
-        
-        query = self.request.GET.get("q")
-        if query is not None:
-            qs = qs.filter(
-                    Q(title__icontains=query)|
-                    Q(content__icontains=query)
-                    ).distinct()
-        return qs
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['user', 'name_book', 'author']
+    # permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         """Вывод 15 последних добавленных книг"""
@@ -41,9 +30,25 @@ class DetailBookView(RetrieveUpdateDestroyAPIView):
         
     serializer_class = BookSerializer
     queryset = Book.objects.all()
+    # permission_classes = [permissions.IsAuthenticated]
 
 
 class CreateCommenntView(ListCreateAPIView):
+    """Создание коментариев"""
 
     queryset = Comment.objects.all()
     serializer_class = CreateCommentSerializer
+    # permission_classes = [permissions.IsAuthenticated]
+
+
+class DeleteBook(APIView):
+    # permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        return Book.objects.all()
+
+
+    def delete(self, request):
+        ids = request.data['ids']
+        Book.objects.filter(id__in=ids).delete()
+        return ids # //TODO массовое удаление 

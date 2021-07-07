@@ -13,7 +13,6 @@ STATE = (
 
 class Book(models.Model):
     """Книги"""
-
     user = models.ForeignKey(Profile, 
                             on_delete=models.CASCADE, 
                             verbose_name='Владелец книги', 
@@ -29,6 +28,7 @@ class Book(models.Model):
                                 max_length=50,choices=STATE, 
                                 default='хорошее')
     exchange_status = models.BooleanField(verbose_name='Статус готовности обмена книги', default=False)
+    hashtag = models.ManyToManyField('Hashtag', )
     created_at = models.DateTimeField(default=timezone.now)
    
     class Meta:
@@ -40,7 +40,6 @@ class Book(models.Model):
 
 class Image_book(models.Model):
     """Изображение книги"""
-
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="image_book", verbose_name='Книга')
     image_book = models.ImageField(upload_to='image_book', 
                                     verbose_name='Изображение книги',
@@ -53,7 +52,6 @@ class Image_book(models.Model):
    
 class Author(models.Model):
     """Авторы"""
-
     name_author = models.CharField(verbose_name='Имя автора', max_length=70)
     describe_author = models.TextField(verbose_name='Описание автора',max_length=300)
     photo_author = models.ImageField(upload_to='photo_author', verbose_name='Фото автора', null=True, blank=True)
@@ -64,7 +62,6 @@ class Author(models.Model):
 
 class Category(models.Model):
     """Категории"""
-
     category = models.CharField(verbose_name="Категория", max_length=150)
     
     def __str__(self):
@@ -73,7 +70,6 @@ class Category(models.Model):
 
 class Genre(models.Model):
     """Жанры"""
-
     genre = models.CharField(verbose_name='Жанр', max_length=50)
 
     def __str__(self):
@@ -82,7 +78,6 @@ class Genre(models.Model):
 
 class Rating(models.Model):
     """Рейтинг книги"""
-
     value = models.SmallIntegerField("Значение", default=0)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name='Книга', related_name='rate_book')
 
@@ -95,7 +90,6 @@ class Rating(models.Model):
     
 class Comment(models.Model):
     """Коментарии"""
-    
     book = models.ForeignKey(Book, 
                             on_delete=models.CASCADE, 
                             verbose_name='Книга', 
@@ -110,3 +104,11 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.comment_name} - {self.book} - {self.username}"
+
+
+class Hashtag(models.Model):
+    """Хэштэг для книги"""
+    hashtag = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return f'{self.hashtag}'
