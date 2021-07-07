@@ -1,10 +1,15 @@
-from django.contrib.auth.models import User
 from django.db.models import fields
 from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
 from .models import *
 from login.models import Profile
 
+
+class HashtagSerializer(serializers.ModelSerializer):
+    """"""
+    class Meta:
+        model = Hashtag
+        fields = ['name_hashtag']
 
 class RatingSerializer(serializers.ModelSerializer):
     """Сериализация рейтинга книг"""
@@ -52,14 +57,7 @@ class BookSerializer(serializers.ModelSerializer):
     author = SlugRelatedField(slug_field='name_author', queryset=Author.objects.all())
     rate_book = RatingSerializer(many=True)
     comment_book = CommentSerializer(many=True)
+    hashtag = HashtagSerializer(many=True)
     class Meta:
         model = Book
-        fields = ['user', 'name_book', 'author', 'genre', 'country', 'book_describe', 'image_book', 'book_state', 'exchange_status', 'rate_book', 'comment_book']
-
-
-class UserSerializer(serializers.ModelSerializer):
-    """Сериализация пользователя"""
-    class Meta:
-        model = Profile
-        exclude = ['password']
-
+        fields = ['user', 'name_book', 'author', 'genre', 'country', 'book_describe', 'image_book', 'book_state', 'exchange_status', 'hashtag', 'rate_book', 'comment_book']

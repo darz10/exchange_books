@@ -28,7 +28,7 @@ class Book(models.Model):
                                 max_length=50,choices=STATE, 
                                 default='хорошее')
     exchange_status = models.BooleanField(verbose_name='Статус готовности обмена книги', default=False)
-    hashtag = models.ManyToManyField('Hashtag', )
+    hashtag = models.ManyToManyField('Hashtag', blank=True, related_name='hashtag')
     created_at = models.DateTimeField(default=timezone.now)
    
     class Meta:
@@ -108,7 +108,7 @@ class Comment(models.Model):
 
 class Hashtag(models.Model):
     """Хэштэг для книги"""
-    hashtag = models.CharField(max_length=100, unique=True)
+    name_hashtag = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
-        return f'{self.hashtag}'
+        return f'{self.name_hashtag}'
