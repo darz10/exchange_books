@@ -11,7 +11,7 @@ class ProfileView(ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['user', 'name_book', 'author']
+    search_fields = ['user', 'name_book', 'author', 'hashtag']
     # permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):

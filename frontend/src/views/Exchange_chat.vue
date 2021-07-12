@@ -1,8 +1,7 @@
 <template>
     <div>
         <h1>Exchange chat</h1>
-       
-
+        
         <div class="dialog">
             <div v-for="dialog in dialogs" direction="column" justify-content="start" align-items="end" :key="dialog.id">
                 {{dialog.message}}

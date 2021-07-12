@@ -1,9 +1,12 @@
 <template>
     <div class="singleBook">
         <h1>SIIngel hello</h1>
-        <div>
-            <p>Here will attrs</p>
-        </div>
+        <p>{{book.}}</p>
+        <p>{{book.author}}</p>
+        <p>{{book.author}}</p>
+        <p>{{book.author}}</p>
+        <p>{{book.author}}</p>
+        <p>{{book.author}}</p>
     </div>
 </template>
 <script>
@@ -16,11 +19,12 @@
             }
         },
         created() {
-            this.loadMovie()
+            this.getBook()
         },
         methods: {
             async getBook() {
                 this.book = await fetch(`${this.$store.getters.getUrl}/api/book/${this.id}`).then(response => response.json())
+                console.log(this.book)
             }
         }
     }   

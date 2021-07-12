@@ -1,8 +1,16 @@
 <template>
     <div class="container">
         <h1 class="text-center">Welcome to ExBook!</h1>
-        <button v-on:click="show = !show" type="button" class="btn btn-outline-success">Регистрация</button>
-        <button v-on:click="show = !show" type="button" class="btn btn-outline-success">Вход</button>
+        <div class="container">
+            <div class="d-flex justify-content-center" style="margin: 15px;">
+                <div class="form-group" style="margin: 7px">
+                    <button v-on:click="show = false" type="button" class="btn btn-outline-success">Регистрация</button>
+                </div>
+                <div class="form-group" style="margin: 7px">
+                    <button v-on:click="show = true" type="button" class="btn btn-outline-success">Вход</button>
+                </div>
+            </div>
+        </div>
         <transition name="fade" mode="out-in">
             <div v-if="show" id="auth-container" class="row">
               <div class="col-sm-4 offset-sm-4">
@@ -22,13 +30,28 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control form-control-lg" v-model="password" id="password" required>
+                    </div>
+
+                    <div class="form-group">
                         <label>Email address</label>
                         <input type="email" class="form-control form-control-lg" v-model="email" id="email" required>
                     </div>
 
+                     <div class="form-group">
+                        <label>First name</label>
+                        <input type="text" class="form-control form-control-lg" v-model="first_name" id="first_name" required>
+                    </div>
+
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control form-control-lg" v-model="password" id="password" required>
+                        <label>Last name</label>
+                        <input type="text" class="form-control form-control-lg" v-model="last_name" id="last_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" class="form-control form-control-lg" v-model="age" id="age" required>
                     </div>
 
                     <button @click="registerAccount()" type="submit" class="btn btn-dark btn-lg btn-block">Sign Up</button>
@@ -48,6 +71,9 @@
                 username: '',
                 password: '',
                 email: '',
+                first_name: '',
+                last_name: '',
+                age: '',
                 show: true
             }
         },
@@ -81,11 +107,15 @@
                         username: this.username,
                         password: this.password,
                         email: this.email,
+                        first_name: this.first_name,
+                        last_name: this.last_name,
+                        age: this.age,
 
                     },
                     success: (response) => {
                         console.log('account was registrated')
                         alert("Ваш аккаунт был успешно зарегитрирован")
+                        this.show = true
                     },
                     error: (response) => {
                         if (response.status === 400) {
@@ -94,10 +124,6 @@
                     }
                 })
             },
-            swapForm(){
-
-            }
-
         }
     }
 </script>

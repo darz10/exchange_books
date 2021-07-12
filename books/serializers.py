@@ -60,4 +60,4 @@ class BookSerializer(serializers.ModelSerializer):
     hashtag = HashtagSerializer(many=True)
     class Meta:
         model = Book
-        fields = ['user', 'name_book', 'author', 'genre', 'country', 'book_describe', 'image_book', 'book_state', 'exchange_status', 'hashtag', 'rate_book', 'comment_book']
+        fields = ['id', 'user', 'name_book', 'author', 'genre', 'country', 'book_describe', 'image_book', 'book_state', 'exchange_status', 'hashtag', 'rate_book', 'comment_book']
