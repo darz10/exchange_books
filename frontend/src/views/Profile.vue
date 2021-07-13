@@ -1,5 +1,5 @@
 <template>
-    <div class="singleBook">
+    <div class="container">
         <h1>Profile</h1>
         <div>
             <p>{{userData.username}}</p>
@@ -19,7 +19,7 @@
         },
         methods: {
             async loaduserData() {
-                this.userData = await fetch(`${this.$store.getters.getUrl}/profile/`).then(response => response.json())
+                this.userData = await fetch(`${this.$store.getters.getUrl}/profile/`, {headers: {"Authorization": "Token " + sessionStorage.getItem('auth_token')}}).then(response => response.json())
                 console.log(this.userData)
             }
         }

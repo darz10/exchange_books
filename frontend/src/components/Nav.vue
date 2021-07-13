@@ -2,7 +2,9 @@
         <div class="navbar navbar-fixed-top">
         <div class="container">
           <h1 class="navbar-brand" style="font-size: 40px;"><b> ExBook</b></h1>
-          <a><h4 style="margin: 7px;">Profile</h4></a>
+          <a href="#" @click="goToProfile()"><h4>Profile</h4></a>
+          <a href="#" v-if="status=false" @click="goLogin()"><h4>login</h4></a>
+          <a href="#" v-else @click="logout()"><h4>Logout</h4></a>
         </div>
       </div>
 </template>
@@ -10,27 +12,32 @@
 <script>
     export default {
         name: "Nav",
-        // data(){
-        //   return{
-        //     status: false,
-        //   }
-        // },
-        // computed: {
-        //     auth() {
-        //         if (sessionStorage.getItem("auth_token")) {
-        //             return true
-        //         }
-        //     }
-        // },
-        // methods: {
-        //     goLogin() {
-        //         this.$router.push({name: "login"})
-        //     },
-        //     logout() {
-        //         sessionStorage.removeItem("auth_token")
-        //         this.$router.push({name: "login"})
-        //     },
-        // }
+        data(){
+          return{
+            status: false,
+          }
+        },
+        created() {
+            this.auth()
+        },
+        methods: {
+            auth(){
+                if (sessionStorage.getItem("auth_token")) {
+                    this.status = true
+                }
+                console.log(this.status)
+            },
+            goLogin() {
+                this.$router.push({name: "Login"})
+            },
+            logout() {
+                sessionStorage.removeItem("auth_token")
+                this.$router.push({name: "Login"})
+            },
+            goToProfile(){
+                this.$router.push({ name: 'Profile' })
+            },
+        },
     }
 </script>
 

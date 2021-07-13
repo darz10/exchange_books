@@ -6,16 +6,15 @@ from .models import Profile
 from .serializers import UserListSerializer
 
 
-
 class UsersList(ListCreateAPIView):
     """Список всех зарегистрированных пользователей и их книги"""
     serializer_class = UserListSerializer
     queryset = Profile.objects.all()
-    
+
 
 class ProfileUser(APIView):
     """Профиль текущего пользователя"""
-    
+
     def get(self, request):
         try:
             user = self.request.user.username
